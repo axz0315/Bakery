@@ -12,6 +12,7 @@ public class BakedGood
     private String recipe;
     private double price;
     private int quantity; 
+    private double profit; 
 
     /**
      * Constructor for objects of class BakedGood
@@ -23,6 +24,7 @@ public class BakedGood
         this.recipe = recipe;
         this.price = price;
         this.quantity = quantity; 
+        this.profit = 0;
     }
 
     public void increaseQuantity(int count) {
@@ -35,12 +37,13 @@ public class BakedGood
             throw new IllegalArgumentException("you cannot buy more than our current inventory!");
         }
         this.quantity -= count; 
-        return this.price * count; 
+        this.profit = this.price*count;
+        return this.profit; 
     }
 
     //toString
     public String toString() {
-        return "baked good: " + this.name + " (" + this.quantity + " @$" + this.price + ")"; 
+        return "baked good: " + this.name + " (" + this.quantity + " @$" + this.price + ")" + "\n" + "profit made: " + this.profit; 
     }
 
     public static void main(String[] args) {
@@ -50,7 +53,6 @@ public class BakedGood
         System.out.println(croissant);
         System.out.println(croissant.purchase(3));
         System.out.println(croissant);
-        System.out.println(croissant.purchase(10));
         //bake 3 more croissants with the leftover dough
         // croissant.increaseQuantity(3);
         // System.out.println(croissant); 
